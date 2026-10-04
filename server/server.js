@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+const cors = require('cors');
 const path = require("path");
 const crypto = require("crypto");
 const Razorpay = require("razorpay");
@@ -94,6 +95,11 @@ if (!existingAdmin) {
   db.prepare("INSERT INTO users(name,email,password_hash,role) VALUES(?,?,?,?)").run("Administrator", adminEmail, hash, "admin"); 
 }
 
+app.use(cors({
+    origin: 'https://shopease-public.vercel.app', 
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true
+}));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
