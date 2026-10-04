@@ -831,7 +831,7 @@ async function openAnnouncements() {
     content.innerHTML = "<p style='color:#64748b;'>Loading announcements...</p>";
     
     try {
-        const res = await fetch("/api/announcement?t=" + new Date().getTime());
+        const res = await fetch(`${API_BASE_URL}/api/announcement?t=` + new Date().getTime());
         const data = await res.json();
         
         const lines = data.announcement.split('\n').filter(line => line.trim() !== '');
