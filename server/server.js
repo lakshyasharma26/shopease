@@ -8,8 +8,6 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
 const multer = require("multer");
-const cors = require('cors');
-app.use(cors());
 
 const app = express();
 const PORT = process.env.PORT || 3000;
