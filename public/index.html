@@ -727,7 +727,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const password = document.getElementById("authPassword").value;
 
             try {
-               let response = await fetch("https://shopease-s7sa.onrender.com/api/register", {
+               let response = await fetch("/api/register", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ name: name || "User", email, password })
