@@ -413,7 +413,7 @@ async function uploadProduct(e) {
     formData.append("productImage", document.getElementById("adminProdImage").files[0]);
 
     try {
-        const res = await fetch("/api/admin/products", {
+        const res = await fetch(`${API_BASE_URL}/api/admin/products`, {
             method: "POST",
             headers: { "Authorization": "Bearer " + authToken },
             body: formData 
@@ -444,7 +444,7 @@ async function editProduct(id, oldName, oldSell, oldCost) {
     if (newCost === null || isNaN(newCost)) return;
 
     try {
-        const res = await fetch("/api/admin/products/" + id, {
+        const res = await fetch(`${API_BASE_URL}/api/admin/products/${id}`, {
             method: "PUT",
             headers: { 
                 "Content-Type": "application/json",
@@ -474,7 +474,8 @@ async function editProduct(id, oldName, oldSell, oldCost) {
 async function deleteProduct(productId) {
     if(!confirm("Are you sure you want to delete this product?")) return;
     try {
-        const res = await fetch("/api/admin/products/" + productId, {
+        // Poora URL ya API_BASE_URL variable use karein
+const res = await fetch(`${API_BASE_URL}/api/admin/products/${productId}`, {
             method: "DELETE",
             headers: { "Authorization": "Bearer " + authToken }
         });
@@ -727,7 +728,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const password = document.getElementById("authPassword").value;
 
             try {
-               let response = await fetch('https://shopease-s7sa.onrender.com/api/register', {
+               let response = await fetch(`${API_BASE_URL}/api/register`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ name: name || "User", email, password })
@@ -904,7 +905,7 @@ async function startPayment() {
             address: ""
         };
 
-        const response = await fetch("/api/create-payment-order", {
+        const response = await fetch(`${API_BASE_URL}/api/create-payment-order`, {
             method: "POST",
             headers: { "Content-Type": "application/json", "Authorization": "Bearer " + authToken },
             body: JSON.stringify({
@@ -928,7 +929,7 @@ async function startPayment() {
             theme: { color: "#2563eb" },
             handler: async function (paymentResponse) {
                 try {
-                    const verifyResponse = await fetch("/api/verify-payment", {
+                    const verifyResponse = await fetch(`${API_BASE_URL}/api/verify-payment`, {
                         method: "POST",
                         headers: { "Content-Type": "application/json", "Authorization": "Bearer " + authToken },
                         body: JSON.stringify({ ...paymentResponse, orderId: data.orderId })
