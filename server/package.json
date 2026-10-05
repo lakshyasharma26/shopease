@@ -22,8 +22,8 @@
   "homepage": "https://github.com/lakshyasharma26/shopease#readme",
   "dependencies": {
     "cors": "^2.8.6",
+    "dotenv": "^18.0.5",
     "express": "^5.2.1",
     "sqlite3": "^6.0.1"
   }
-  
 }
