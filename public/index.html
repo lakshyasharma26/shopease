@@ -513,9 +513,9 @@ async function openAdmin() {
     box.innerHTML = "Loading dashboard...";
     try { 
         const [r, annRes, prodRes] = await Promise.all([
-            fetch("/api/admin/dashboard", { headers: { Authorization: "Bearer " + authToken } }),
-            fetch("/api/announcement"),
-            fetch("/api/products") 
+            fetch(`${API_BASE_URL}/api/admin/dashboard`, { headers: { Authorization: "Bearer " + authToken } }),
+            fetch(`${API_BASE_URL}/api/announcement`),
+            fetch(`${API_BASE_URL}/api/products`) 
         ]);
         
         const d = await r.json(); 
