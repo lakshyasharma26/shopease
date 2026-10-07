@@ -101,6 +101,7 @@ app.use(cors({
     credentials: true
 }));
 app.use(express.json());
+app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 
 // Security Middlewares
 function auth(req, res, next) {
